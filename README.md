@@ -32,12 +32,12 @@ Smart Car Parking is an end-to-end IoT project that revolutionizes how vehicles 
 
 
 ## 🎥 Demo
-
-> 📹 **Code Working Demo**  
-> <video src="videos/code.mp4" controls width="700"></video>  
->
+> 🚗 **Software Working Demo** 
+[▶ Watch Code Demo](https://github.com/Pawan-Agrawall/Smart-Car-Parking/blob/main/videos/code.mp4?raw=true)
+  
 > 🚗 **Hardware Working Demo**  
-> <video src="videos/running.mp4" controls width="700"></video>
+[▶ Watch Hardware Demo](https://github.com/Pawan-Agrawall/Smart-Car-Parking/blob/main/videos/running.mp4?raw=true)
+
 
 ---
 
