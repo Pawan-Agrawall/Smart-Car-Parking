@@ -1,0 +1,86 @@
+#include <Servo.h>
+
+const int trigPin = 9;
+const int echoPin = 10;
+const int servoPin = 6;
+const int distanceThreshold = 10; // distance in cm
+
+Servo myServo;
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  myServo.attach(servoPin);
+  myServo.write(0); // start at 0 degrees
+  Serial.begin(9600);
+}
+
+void loop() {
+  long duration;
+  int distance;
+
+  // Generate ultrasonic pulse
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Read echo
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // Decision
+  if (distance > 0 && distance < distanceThreshold) {
+    myServo.write(90); // Object detected
+  } else {
+    myServo.write(0);  // No object
+  }
+
+  delay(500); // Small delay
+}
+
+const int trigPin = 9;
+const int echoPin = 10;
+bool ultrasonicEnabled = false;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+  if (Serial.available()) {
+    String command = Serial.readStringUntil('\n');
+
+    command.trim(); // Remove trailing \r\n or spaces
+
+    if (command == "start_ultrasonic") {
+      ultrasonicEnabled = true;
+    } else if (command == "stop_ultrasonic") {
+      ultrasonicEnabled = false;
+    } else if (command == "trigger_ultrasonic") {
+      if (ultrasonicEnabled) {
+        // Trigger ultrasonic sensor
+        long duration;
+        digitalWrite(trigPin, LOW);
+        delayMicroseconds(2);
+        digitalWrite(trigPin, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(trigPin, LOW);
+        duration = pulseIn(echoPin, HIGH);
+
+        // Calculate distance in cm
+        float distance = duration * 0.034 / 2;
+
+        // Send distance to Python
+        Serial.println(distance);
+      }
+    }
+  }
+}
