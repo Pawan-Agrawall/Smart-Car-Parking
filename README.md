@@ -34,10 +34,10 @@ Smart Car Parking is an end-to-end IoT project that revolutionizes how vehicles 
 ## 🎥 Demo
 
 > 📹 **Code Working Demo**  
-> <video src="videos/code_demo.mp4" controls width="700"></video>  
+> <video src="videos/code.mp4" controls width="700"></video>  
 >
 > 🚗 **Hardware Working Demo**  
-> <video src="videos/hardware_demo.mp4" controls width="700"></video>
+> <video src="videos/running.mp4" controls width="700"></video>
 
 ---
 
